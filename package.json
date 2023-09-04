@@ -1,0 +1,21 @@
+{
+  "name": "lil-alchemist-rem-api",
+  "version": "1.0.0",
+  "description": "An open source API for little alchemist data, feel free to add your own code and make a pull request",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "little",
+    "alchemist",
+    "remastered"
+  ],
+  "author": "Morganite",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "md5": "^2.3.0",
+    "sqlite3": "^5.1.6"
+  }
+}
