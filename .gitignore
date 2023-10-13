@@ -4,5 +4,3 @@ node_modules
 .vscode/*
 
 .env
-
-card_database.db

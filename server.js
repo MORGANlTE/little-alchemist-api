@@ -24,7 +24,7 @@ async function startServer() {
 
     // Root endpoint
     app.get("/", (req, res, next) => {
-      res.json({ "message": "Ok", "version": "1.1.0", "latest": "Added routes for combos & recipes" });
+      res.json({ "message": "Ok", "version": "1.2.0", "latest": "Added shrine pack & cards" });
     });
 
 

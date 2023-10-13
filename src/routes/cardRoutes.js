@@ -9,7 +9,6 @@ router.get('/:name', async (req, res) => {
   try {
     const database = await db(); // Use your database connection function
 
-
     const cards = await database.all(
       `SELECT * FROM cards 
       WHERE 
@@ -77,7 +76,6 @@ router.get('/recipes/:name', async (req, res) => {
       delete recipes[recipe].id;
     }
     
-    console.log(recipes);
 
     if (!recipes) {
       return res.status(404).json({ error: 'Card not found' });
@@ -99,7 +97,6 @@ router.get('/combos/:name', async (req, res) => {
   try {
     const database = await db(); // Use your database connection function
 
-
     const combinations = await database.all(
       `SELECT * FROM combinations 
       WHERE 
@@ -120,8 +117,6 @@ router.get('/combos/:name', async (req, res) => {
       delete combinations[combo].id;
     }
     
-    console.log(combinations);
-
     if (!combinations) {
       return res.status(404).json({ error: 'Card not found' });
     }
