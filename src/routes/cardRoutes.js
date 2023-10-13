@@ -12,16 +12,12 @@ router.get('/:name', async (req, res) => {
     const cards = await database.all(
       `SELECT * FROM cards 
       WHERE 
-        LOWER(full_name) LIKE LOWER(?) OR 
-        (LOWER(full_name) LIKE LOWER(?)
-        OR LOWER(full_name) LIKE LOWER(?))
+        LOWER(full_name) LIKE LOWER(?) 
+        OR LOWER(full_name) LIKE LOWER(?)
       `,
-      [cardName, `%${cardName} (Onyx)`, `%${cardName} (Card)`]
+      [cardName, `%${cardName} (Card)`]
     );
 
-    //now i want to get the different stats for each level for each card
-    // i have a table called card_level_stats
-    // i want to get the stats for each card: level (1 to 5 always) with the level corresponding attack and defense
     for(var card in cards)
     {
       const cardId = cards[card].id;
@@ -31,6 +27,8 @@ router.get('/:name', async (req, res) => {
         `,
         [cardId]
       );
+      //get the last question mark from the url and remove everything after it
+      cards[card].image_url = cards[card].image_url.substring(0, cards[card].image_url.lastIndexOf("?"));
       //remove the id and the card_id from the card_level_stats
       for(var stat in cardLevelStats)
       {
@@ -65,10 +63,9 @@ router.get('/recipes/:name', async (req, res) => {
       `SELECT * FROM recipes 
       WHERE 
         LOWER(result) LIKE LOWER(?) OR 
-        (LOWER(result) LIKE LOWER(?)
-        OR LOWER(result) LIKE LOWER(?))
+        LOWER(result) LIKE LOWER(?)
       `,
-      [cardName, `%${cardName} (Onyx)`, `%${cardName} (Card)`]
+      [cardName, `%${cardName} (Card)`]
     );
 
     for (var recipe in recipes)
@@ -100,16 +97,14 @@ router.get('/combos/:name', async (req, res) => {
     const combinations = await database.all(
       `SELECT * FROM combinations 
       WHERE 
-        LOWER(card1) LIKE LOWER(?) OR 
-        (LOWER(card1) LIKE LOWER(?)
-        OR LOWER(card1) LIKE LOWER(?))
+        LOWER(card1) LIKE LOWER(?) 
+        OR LOWER(card1) LIKE LOWER(?)
 
         OR
-        LOWER(card2) LIKE LOWER(?) OR
-        (LOWER(card2) LIKE LOWER(?)
-        OR LOWER(card2) LIKE LOWER(?))
+        LOWER(card2) LIKE LOWER(?)
+        OR LOWER(card2) LIKE LOWER(?)
       `,
-      [cardName, `%${cardName} (Onyx)`, `%${cardName} (Card)`, cardName, `%${cardName} (Onyx)`, `%${cardName} (Card)`]
+      [cardName, `%${cardName} (Card)`, cardName, `%${cardName} (Card)`]
     );
 
     for (var combo in combinations)

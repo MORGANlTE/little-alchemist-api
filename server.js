@@ -13,6 +13,12 @@ async function startServer() {
     // Initialize the database by calling openDb
     const db = await openDb();
 
+    //add a listener that logs every request
+    app.use(function (req, res, next) {
+      console.log(req.method, req.url);
+      next();
+    });
+
     // Start server
     app.listen(HTTP_PORT, () => {
       console.log("Server running on port " + HTTP_PORT);
@@ -24,7 +30,7 @@ async function startServer() {
 
     // Root endpoint
     app.get("/", (req, res, next) => {
-      res.json({ "message": "Ok", "version": "1.2.0", "latest": "Added shrine pack & cards" });
+      res.json({ "message": "Ok", "version": "1.3.0", "latest": "Logs added & bugfixes" });
     });
 
 
