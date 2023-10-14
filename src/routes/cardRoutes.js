@@ -27,9 +27,7 @@ router.get('/:name', async (req, res) => {
         `,
         [cardId]
       );
-      //get the last question mark from the url and remove everything after it
-      cards[card].image_url = cards[card].image_url.substring(0, cards[card].image_url.lastIndexOf("?"));
-      //remove the id and the card_id from the card_level_stats
+
       for(var stat in cardLevelStats)
       {
         delete cardLevelStats[stat].id;
@@ -37,6 +35,30 @@ router.get('/:name', async (req, res) => {
       }
       cards[card].stats = cardLevelStats;
     }
+
+    if (!cards) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+
+    // Respond with the retrieved card
+    res.json(cards);
+    
+  } catch (error) {
+    console.error('Error fetching card:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.get('/', async (req, res) => {
+  try {
+    const database = await db(); // Use your database connection function
+
+    const cards = await database.all(
+      `SELECT name, id, image_url FROM cards 
+      `
+    );
+
+    
 
     if (!cards) {
       return res.status(404).json({ error: 'Card not found' });

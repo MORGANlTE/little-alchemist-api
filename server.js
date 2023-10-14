@@ -30,7 +30,7 @@ async function startServer() {
 
     // Root endpoint
     app.get("/", (req, res, next) => {
-      res.json({ "message": "Ok", "version": "1.3.0", "latest": "Logs added & bugfixes" });
+      res.json({ "message": "Ok", "version": "1.4.0", "latest": "Added all cards call" });
     });
 
 
