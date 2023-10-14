@@ -3,6 +3,7 @@ var app = express();
 var sqlite3 = require('sqlite3');
 var { open } = require('sqlite');
 var cardRoutes = require('./src/routes/cardRoutes');
+const cors = require('cors');
 
 var HTTP_PORT = 8000;
 var openDb = require('./src/utils/db');
@@ -12,6 +13,7 @@ async function startServer() {
   try {
     // Initialize the database by calling openDb
     const db = await openDb();
+    app.use(cors());
 
     //add a listener that logs every request
     app.use(function (req, res, next) {
