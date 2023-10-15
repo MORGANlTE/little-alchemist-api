@@ -147,7 +147,31 @@ router.get('/combos/:name', async (req, res) => {
   }
 });
 
+router.get('/id/:id', async (req, res) => {
 
+  try {
+    const database = await db(); // Use your database connection function
+
+    const cards = await database.all(
+      `SELECT * FROM cards 
+      WHERE 
+        ID = ?
+      `,
+      [req.params.id]
+    );
+
+    if (!cards) {
+      return res.status(404).json({ error: 'Card not found' });
+    }
+
+    // Respond with the retrieved card
+    res.json(cards);
+    
+  } catch (error) {
+    console.error('Error fetching card:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 module.exports = router;
