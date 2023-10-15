@@ -12,7 +12,8 @@ var openDb = require('./src/utils/db');
 async function startServer() {
   try {
     // Initialize the database by calling openDb
-    const db = await openDb();
+    await openDb();
+
     app.use(cors());
 
     //add a listener that logs every request
