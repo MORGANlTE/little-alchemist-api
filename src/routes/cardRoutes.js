@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
     const database = await db(); // Use your database connection function
 
     const cards = await database.all(
-      `SELECT name, id, image_url, rarity, fusion FROM cards 
+      `SELECT name, full_name, id, image_url, rarity, fusion FROM cards 
       `
     );
 
