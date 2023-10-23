@@ -8,7 +8,7 @@
 It allows you to get information about cards, recipes and combos in the game.
 
 ## :headphones: Installation
-To use this API, you need to have Node.js and Express installed on your machine. You also need to have the database from <a href="https://github.com/MORGANlTE/Lil-alchemist-R-webscraper">the webscraper</a>.
+To use this API, you need to have Node.js and Express installed on your machine. You also need to have the database from <a href="https://github.com/MORGANlTE/Lil-alchemist-R-webscraper">the webscraper</a>, if the database in the utils folder is not up to date.
 
 To run the API, you need to clone this repository and install the dependencies:
 
