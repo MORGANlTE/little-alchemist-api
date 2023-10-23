@@ -27,7 +27,7 @@ The API will be available at http://localhost:3000.
 ## :octocat: Public URL
 No public API hosted yet
 
-## :bear: Note:
+## :notebook: Note:
 The images do not fully work from the wiki. Remove everything after the `.png` from the scraped database.
 
 ## :heart: Credits
