@@ -33,7 +33,16 @@ async function startServer() {
 
     // Root endpoint
     app.get("/", (req, res, next) => {
-      res.json({ "message": "Ok", "version": "1.6.3", "latest": "Fixed db issues" });
+      res.json({ "message": "Ok", "version": "1.8.2", "latest": "Bugfix in /fullcombos route (added this route in 1.8)",
+      "All routes for now": {
+        "/api/cards":"Get all the cards with little to no info",
+        "/api/cards/:name":"Get a specific card by it's name",
+        "/api/cards/:id":"Get a card by it's id",
+        "/api/cards/combos/:name":"Get all the combos of a card (little information)",
+        "/api/cards/recipes/:name":"Get all the recipes of a card",
+        "/api/cards/fullcombos":"Get all the fullcombos with all their information (detailed)",
+      },
+    });
     });
 
 
