@@ -258,4 +258,28 @@ router.get('/id/:id', async (req, res) => {
 });
 
 
+
+router.get('/onyx', async (req, res) => {
+  try {
+    const database = await db(); // Use your database connection function
+
+    const cards = await database.all(
+      `SELECT name, full_name, id, image_url, rarity, fusion FROM cards`
+    );
+
+    if (!cards) {
+      return res.status(404).json({ error: 'Cards not found' });
+    }
+
+    // Respond with the retrieved card
+    res.json(cards);
+    
+  } catch (error) {
+    console.error('Error fetching card:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
 module.exports = router;

@@ -3,6 +3,7 @@ var app = express();
 var sqlite3 = require('sqlite3');
 var { open } = require('sqlite');
 var cardRoutes = require('./src/routes/cardRoutes');
+var packRoutes = require('./src/routes/packRoutes');
 const cors = require('cors');
 
 var HTTP_PORT = 8000;
@@ -30,6 +31,7 @@ async function startServer() {
     // Database routes
     // from lil-alchemist-api/src/routes/cards.js:
     app.use('/api/cards', cardRoutes);
+    app.use('/api/packs', packRoutes);
 
     // Root endpoint
     app.get("/", (req, res, next) => {
@@ -41,6 +43,7 @@ async function startServer() {
         "/api/cards/combos/:name":"Get all the combos of a card (little information)",
         "/api/cards/recipes/:name":"Get all the recipes of a card",
         "/api/cards/fullcombos":"Get all the fullcombos with all their information (detailed)",
+        "/api/packs/:name":"Get a pack by it's name",
       },
     });
     });
